@@ -9,9 +9,9 @@ public abstract class Item {
 
     /*public void setPrice(double price) {
         this.price = price;
-    }*/
+    }
 
-    /*public double getPrice() {
+    public double getPrice() {
         return price;
     }*/
 

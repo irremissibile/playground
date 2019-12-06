@@ -5,7 +5,6 @@ public class Decoration extends Item {
 
 
     public Decoration(double price, String name) {
-        //this.price = price;
         super(price);
         this.name = name;
     }
@@ -21,15 +20,7 @@ public class Decoration extends Item {
         return price;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public String toString() {
-        return name;
+        return "Decoration: " + name + " (" + price + ")";
     }
 }

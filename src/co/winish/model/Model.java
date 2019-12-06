@@ -1,6 +1,7 @@
 package co.winish.model;
 
 import co.winish.entities.Bouquet;
+import co.winish.entities.Flower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,25 +21,23 @@ public class Model {
         return availableBouquets;
     }
 
-    public Bouquet getBouquet(int bouqueIndex) {
-        return availableBouquets.get(bouqueIndex);
+    public boolean isEmpty() {
+        return availableBouquets.isEmpty();
+    }
+
+    public int getSize() {
+        return availableBouquets.size();
+    }
+
+    public void sortBouque(int index) {
+        availableBouquets.get(index).sort();
     }
 
     public void addBouquet(Bouquet bouquet) {
         availableBouquets.add(bouquet);
     }
 
-
-
-    /*public void addItemToBouquet(Item item, int bouquetIndex) {
-        availableBouquets.get(bouquetIndex).addItem(item);
+    public List<Flower> filterFlowers(int bouqueIndex, double minLength, double maxLength) {
+        return availableBouquets.get(bouqueIndex).filterFlowersByLength(minLength, maxLength);
     }
-
-    public void sortBouquet(int bouquetIndex) {
-        availableBouquets.get(bouquetIndex).sort();
-    }
-
-    public Flower getFlowerByLength(int bouquetIndex, double min, double max) {
-        return availableBouquets.get(bouquetIndex).getFlower(min, max);
-    }*/
 }

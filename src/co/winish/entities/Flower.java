@@ -11,7 +11,6 @@ public class Flower extends Item {
         this.name = name;
         this.length = length;
         this.freshness = freshness;
-        //this.price = price;
     }
 
 
@@ -28,10 +27,8 @@ public class Flower extends Item {
 
     @Override
     public String toString() {
-        return name + " " + getFreshness();
+        return "Flower: " + name + freshness.toString();
     }
-
-
 
     public double getLength() {
         return length;
@@ -60,7 +57,7 @@ public class Flower extends Item {
 
         @Override
         public String toString() {
-            return "is " + daysOld + " days old";
+            return " is " + daysOld + " days old";
         }
     }
 

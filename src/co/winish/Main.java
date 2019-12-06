@@ -13,14 +13,13 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Model model = new Model();
-        Controller controller = new Controller(model, new View());
-
-        Flower f1 = new Flower(1.5, "tyulpan", 20, Flower.Freshness.AWESOME);
-        Flower f2 = new Flower(2.5, "tyulpan2", 25, Flower.Freshness.AWESOME);
-        Flower f3 = new Flower(1.5, "tyulpan3", 20, Flower.Freshness.BAD);
-        Flower f4 = new Flower(1.5, "tyulpan4", 20, Flower.Freshness.NOTBAD);
-        Flower f5 = new Flower(10.0, "tyulpan5", 100, Flower.Freshness.GOOD);
+        //Adding some stuff to our "flower shop"
+        Flower f0 = new Flower(4.0, "Pink tulip", 25, Flower.Freshness.BAD);
+        Flower f1 = new Flower(3.5, "Yellow tulip", 20, Flower.Freshness.NOTBAD);
+        Flower f2 = new Flower(7.5, "Red rose", 45, Flower.Freshness.GOOD);
+        Flower f3 = new Flower(9.5, "Black rose", 40, Flower.Freshness.AWESOME);
+        Flower f4 = new Flower(10.5, "White orchid", 30, Flower.Freshness.GOOD);
+        Flower f5 = new Flower(13.3, "Black orchid", 30, Flower.Freshness.AWESOME);
         Decoration w1 = new Decoration(5.4, "wrap1");
         Decoration w2 = new Decoration(7.8, "wrap2");
         Decoration d1 = new Decoration(3.2, "decoration1");
@@ -33,15 +32,19 @@ public class Main {
         l1.add(d2);
         l1.add(f5);
         List<Item> l2 = new ArrayList<>();
+        l2.add(f0);
         l2.add(f3);
         l2.add(w1);
         l2.add(d1);
         l2.add(f4);
-        Bouquet b1 = new Bouquet(l1);
-        Bouquet b2 = new Bouquet(l2);
-        model.addBouquet(b1);
-        model.addBouquet(b2);
+        List<Bouquet> bouquetList = new ArrayList<>();
+        bouquetList.add(new Bouquet(l1));
+        bouquetList.add(new Bouquet(l2));
+        //********************************
 
+
+        Model model = new Model(bouquetList);
+        Controller controller = new Controller(model, new View());
         controller.process();
     }
 }

@@ -5,6 +5,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Bouque is one of the core entities of our flower shop
+ * @author self_affected
+ */
+
+
+
 public class Bouquet {
     private List<Item> items;
     private double price;
@@ -14,6 +21,10 @@ public class Bouquet {
         items = new ArrayList<>();
     }
 
+    /**
+     * Parameterized constructor
+     * @param bouquet List of Item's to store in a bouquet
+     */
     public Bouquet(List<Item> bouquet) {
         this.items = bouquet;
         this.price = bouquet.stream()
@@ -23,33 +34,27 @@ public class Bouquet {
 
 
 
-    public void addItem(Item item) {
-        items.add(item);
-        price += item.getPrice();
+    @Override
+    public String toString() {
+        return "  price: " + price + items.toString();
     }
 
-    public void removeItem(int itemIndex) {
-        items.remove(itemIndex);
-    }
-
-
-
+    /**
+     * Sort a particular bouquet by Freshness
+     */
     public void sort() {
         items = items.stream()
-                         .sorted(Comparator.comparingInt(Bouquet::calcFreshness))
-                         .collect(Collectors.toList());
+                     .sorted(Comparator.comparingInt(Bouquet::calcFreshness))
+                     .collect(Collectors.toList());
     }
 
-    private static int calcFreshness(Item item) {
-        if(item instanceof Flower) {
-            return ((Flower)item).getFreshness();
-        } else {
-            return 0;
-        }
-    }
-
-
-
+    /**
+     * Firstly, filters only Flowers from Bouquet
+     * Secondly, filters Flowers by length
+     * @param min minimum length
+     * @param max maximum length
+     * @return List of filtered Flowers from a Bouquet
+     */
     public List<Flower> filterFlowersByLength(double min, double max) {
         return items.stream()
                     .filter(item -> item instanceof Flower)
@@ -58,7 +63,27 @@ public class Bouquet {
                     .collect(Collectors.toList());
     }
 
+    /**
+     * Calculates an int representing Freshness
+     * If the Item is not a Flower, returns 0
+     * @param item Item which Freshness is needed to be calculated
+     * @return int
+     */
+    private static int calcFreshness(Item item) {
+        if(item instanceof Flower) {
+            return ((Flower)item).getFreshness();
+        } else {
+            return 0;
+        }
+    }
 
+    /**
+     * Method from past implementations
+     * @deprecated
+     * @param min minimum length
+     * @param max maximum length
+     * @return returns the first Flower
+     */
     public Flower getFlower(double min, double max) {
         return (Flower) items.stream()
                 .filter(item -> item instanceof Flower)
@@ -68,14 +93,16 @@ public class Bouquet {
                 .get();
     }
 
-
-
     public double getPrice() {
         return price;
     }
 
-    @Override
-    public String toString() {
-        return "  price: " + price + items.toString();
+    public void addItem(Item item) {
+        items.add(item);
+        price += item.getPrice();
+    }
+
+    public void removeItem(int itemIndex) {
+        items.remove(itemIndex);
     }
 }
